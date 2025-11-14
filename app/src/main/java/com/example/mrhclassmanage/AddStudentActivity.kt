@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
@@ -11,8 +12,8 @@ class AddStudentActivity : AppCompatActivity() {
 
     private lateinit var idInput: EditText
     private lateinit var nameInput: EditText
-    private lateinit var genderInput: EditText
     private lateinit var classInput: EditText
+    private lateinit var genderGroup: RadioGroup
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,8 +22,8 @@ class AddStudentActivity : AppCompatActivity() {
 
         idInput = findViewById(R.id.inputStudentId)
         nameInput = findViewById(R.id.inputStudentName)
-        genderInput = findViewById(R.id.inputStudentGender)
         classInput = findViewById(R.id.inputStudentClass)
+        genderGroup = findViewById(R.id.genderGroup)
 
         findViewById<Button>(R.id.btnConfirm).setOnClickListener { submitStudent() }
         findViewById<Button>(R.id.btnCancel).setOnClickListener {
@@ -34,7 +35,11 @@ class AddStudentActivity : AppCompatActivity() {
     private fun submitStudent() {
         val studentId = idInput.text.toString().trim()
         val studentName = nameInput.text.toString().trim()
-        val studentGender = genderInput.text.toString().trim()
+        val studentGender = when (genderGroup.checkedRadioButtonId) {
+            R.id.radioMale -> "男"
+            R.id.radioFemale -> "女"
+            else -> ""
+        }
         val studentClass = classInput.text.toString().trim()
         if (studentId.isBlank() || studentName.isBlank() || studentGender.isBlank() || studentClass.isBlank()) {
             Toast.makeText(this, "请填写完整信息", Toast.LENGTH_SHORT).show()

@@ -11,7 +11,10 @@ class MainActivity : AppCompatActivity() {
 
     private val students = mutableListOf(
         Student(id = "2023110001", name = "张三", gender = "男", className = "软件一班"),
-        Student(id = "2023110002", name = "李四", gender = "女", className = "软件二班")
+        Student(id = "2023110002", name = "李四", gender = "女", className = "软件二班"),
+        Student(id = "2023111001", name = "李贵", gender = "男", className = "网工1班"),
+        Student(id = "2023111002", name = "冯朝", gender = "男", className = "网工2班"),
+        Student(id = "2023111003", name = "朱贵", gender = "女", className = "网工3班")
     )
 
     private lateinit var studentAdapter: StudentAdapter
